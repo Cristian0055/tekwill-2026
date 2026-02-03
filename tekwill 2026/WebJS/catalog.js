@@ -1,3 +1,4 @@
+/* checks to see if hamburger menu is shown */
 const hamburger = document.querySelector(".hamburger");
 const linksContainer = document.querySelector(".navList");
 const links = document.querySelectorAll(".link");
@@ -19,7 +20,7 @@ if (window.matchMedia("(max-width: 550px)").matches) {
 
 function closeMenu() {
     links.forEach((links) => {
-        link.addEventListener("click", () => {
+        links.addEventListener("click", () => {
             linksContainer.classList.remove("active");
             hamburger.classList.remove("active");
         });
