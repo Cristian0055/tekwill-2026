@@ -62,24 +62,28 @@ html body {
 
     /* items in the shop start*/
 .itemWrapper {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 5rem 5rem;
     justify-content: center;
     margin-top: 5rem;
-    }
+}
 
 .itemContainer {
     display: block;
-    margin: auto 4.5%;
     padding: 0.5rem 1rem;
     background-color: rgb(48, 206, 75);
     border-radius: 0.75rem;
-    flex-wrap: wrap;
+    flex-basis: calc(33.333% - 6%);
 }
 
 .itemImage {
     height: 15rem;
     width: 20rem;
+}
+
+.itemContainer p {
+    margin: 0.5rem 0;
 }
 
 .bottomContainer {
@@ -166,22 +170,46 @@ html body {
     }
 
     .itemWrapper {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        box-sizing: border-box;
     }
 
     .itemContainer {
-        height: 1rem;
-        margin: 1rem;
+        display: block;
+        margin: 0;
+        padding: 0.2rem 0.1rem;
+        height: auto;
+        border-radius: 0.5rem;
+        width: calc(100% - 2rem);
     }
 
     .itemImage {
-        width: 5rem;
-        height: 5rem;
+        width: 100%;
+        height: auto;
+        max-width: 150px;
+        display: block;
+        margin: 0 auto;
     }
 
+    .itemContainer .name {
+        margin-left: 0.3rem;
+    }
+
+    .bottomContainer {
+        gap: 0.3rem;
+    }
 
     .basket {
-        padding: 0;
+        padding: 0.2rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .inspectItem {
+        width: 20px;
     }
 
     /* items in the shop end*/
