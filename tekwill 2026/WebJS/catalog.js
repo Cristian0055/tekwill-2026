@@ -26,3 +26,43 @@ function closeMenu() {
         });
     });
 }
+
+
+// The left right button things for the catalog section
+for (let i = 1; i <= 2; i++) {      // "i <= 2" shows how many sections there are
+    const scrollLeft = document.getElementById(`scrollLeft${i}`);
+    const scrollRight = document.getElementById(`scrollRight${i}`);
+    const itemWrapper = document.getElementById(`itemWrapper${i}`);
+
+    if (scrollLeft && scrollRight && itemWrapper && window.matchMedia("(max-width: 550px)").matches) { // for small screens
+        scrollLeft.addEventListener('click', function() {
+            itemWrapper.scrollBy({
+                left: -125,
+                behavior: 'smooth'
+            });
+        });
+
+        scrollRight.addEventListener('click', function() {
+            itemWrapper.scrollBy({
+                left: 125,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    else {  // for the rest of the screens
+        scrollLeft.addEventListener('click', function() {
+            itemWrapper.scrollBy({
+                left: -750,
+                behavior: 'smooth'
+            });
+        });
+
+        scrollRight.addEventListener('click', function() {
+            itemWrapper.scrollBy({
+                left: 750,
+                behavior: 'smooth'
+            });
+        });
+    }
+}
