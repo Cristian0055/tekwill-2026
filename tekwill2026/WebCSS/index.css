@@ -1,0 +1,386 @@
+* {
+    font-family: 'Comfortaa';
+    list-style: none;
+    text-decoration: none;
+    color: #000;
+}
+
+html, body {
+    background-color: #c6e96fb6;
+    padding: 0;
+    margin: 0;
+}
+
+p, h1, h2 {
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation start*/
+
+header {
+    background-color: #17942c;
+}
+
+.nav {
+    padding: 0.5rem 0;
+    margin: 0 5rem;
+    height: 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoBox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logoBox p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'open sans', sans-serif;
+}
+
+.logo {
+    user-select: none;
+}
+
+.navList ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navList ul li {
+    list-style: none;
+}
+
+.navList ul li a{
+    text-decoration: none;
+    color: #000;
+    padding: 1rem;
+    display: block;
+    font-family: 'open sans', sans-serif;
+    cursor: pointer;
+    user-select: none;
+}
+
+.navList li:hover {
+    background-color: #34bd228a;
+}
+
+.hamburger {
+    width: 1.875rem;
+    height: 1.313rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    position: absolute;
+    top: 1.5rem;
+    right: 1rem;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.bar {
+    margin-top: 2px;
+    height: 0.2rem;
+    width: 100%;
+    background-color: #000;
+    border-radius: 0.625rem;
+    transition: all ease-in-out 100ms;
+}
+/* Navigation end*/
+
+
+/*body start*/
+
+.allImage {
+    display: flex;
+    flex-direction: column;
+}
+
+.imageMain {
+    width: 100%;
+    height: 80vh;
+    filter: brightness(50%);
+    user-select: none;
+}
+
+.allImage h1, .allImage p {
+    position: relative;
+    bottom: 50vh;
+    color: #ffffff;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.allImage h1 {
+    margin-bottom: 3rem;
+    font-size: 50px;
+}
+
+.allImage p {
+    font-weight: bold;
+    max-width: 1000px;
+    line-height: 30px;
+}
+
+.Collumns {
+    display: flex;
+    flex-direction: row;
+    margin: 0 182px 2rem;
+    padding: 3rem 0;
+    background-color: #53ce68;
+}
+
+.collumn {
+    max-width: 400px;
+    margin: 0 10px;
+}
+
+.icon {
+    height: 60px;
+    margin-bottom: 25px;
+    user-select: none;
+}
+
+.newProducts h1, .newProducts p {
+    margin-bottom: 10px;
+}
+
+.productImages {
+    margin: 60px auto 0;
+    display: flex;
+}
+
+.product {
+    margin: 0 5px 30px;
+    padding: 10px 20px;
+    background-color: #c6e96ff8;
+}
+
+.productImage {
+    height: 300px;
+    width: 300px;
+    margin-bottom: 20px;
+    border-radius: 0.5rem;
+}
+
+.center {
+    justify-content: center;
+    text-align: center;
+}
+
+/*body end*/
+
+
+/* footer start*/
+
+.footer {
+    background-color: #33a82fce;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    gap: 1rem;
+}
+
+.contacts {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    flex: 0 0 100%;
+    white-space: nowrap;
+}
+
+.contacts ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+    align-items: center;
+    width: 100%;
+}
+
+.contacts ul li.phone {
+    margin-left: 3rem;
+}
+
+.phoneNumber {
+    color: #000;
+    display: flex;
+    align-items: center;
+}
+
+.phoneNumber p {
+    font-size: 0.75rem;
+}
+
+.footer a {
+    text-decoration: none;
+}
+
+.contactImages {
+    display: inline-block;
+    user-select: none;
+}
+
+.disclaimer {
+    font-size: 0.875rem;
+    margin: 0;
+    flex: 1;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+    /* footer end*/
+
+@media screen and (max-width: 550px) {
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Navigation start*/
+
+    .logo {
+        height: 3.5rem;
+        margin-top: 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .navList {
+        font-weight: 200;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        background-color: #0f6e1ca4;
+        top: -20rem;
+        width: 100%;
+        transition: ease-in-out 200ms;
+    }
+
+    .nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navList ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 3rem 0 0.6rem;
+    }
+
+    .navList ul li {
+        text-align: center;
+    }
+
+    .navList .logo{
+        z-index: -1;
+    }
+
+    .hamburger {
+        z-index: 3;
+    }
+
+    .nav {
+        margin: 0 auto 3rem;
+    }
+
+    .navList.active {
+        top:0;
+        z-index: 2;
+    }
+
+    .hamburger.active :nth-child(1) {
+        transform: rotate(45deg) translate(0.45rem, 0.1875rem);
+    }
+
+    .hamburger.active :nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active :nth-child(3) {
+        transform: rotate(-45deg) translate(0.45rem, -0.1875rem);
+    }
+
+    /* Navigation end*/
+
+
+    /* body start*/
+
+    .imageMain {
+        position: relative;
+        left: 100%;
+        margin-left: -200%;
+        width: 200%;
+        overflow: hidden;
+        text-align: center;
+        height: 90vh;
+        filter: brightness(50%);
+        user-select: none;
+    }
+
+    .imageText {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .imageText h1, .imageText p {
+        position: relative;
+        bottom: 50vh;
+        color: #ffffff;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .imageText h1 {
+        margin-bottom: 3rem;
+        font-size: 50px;
+    }
+
+    .imageText p {
+        font-weight: bold;
+        max-width: 1000px;
+        line-height: 30px;
+}
+
+    /* body end */
+
+
+    /* footer start*/
+
+    .footer {
+        margin: 0;
+    }
+
+    .contacts ul li.phone {
+        margin: 0;
+    }
+
+    .disclaimer {
+        font-size: 0.75rem;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* footer end*/
+
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('../../fonts/Comfortaa.ttf');
+}
