@@ -189,6 +189,11 @@ header {
     text-align: center;
 }
 
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
 /*body end*/
 
 
