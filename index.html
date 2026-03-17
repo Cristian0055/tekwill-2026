@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -7,6 +8,7 @@
     <title>Acasă</title>
     <link rel="icon" href="./Images/logo.png">
     <link rel="stylesheet" href="./WebCSS/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
 
@@ -19,9 +21,9 @@
             </div>
             </a>
             <div class="languageBox">
-                <a href="" class="language"><img src="./Images/romanian.svg">ro</a>
-                <a href="./WebHTML-en/index-en.html" class="language"><img src="./Images/english.svg">en</a>
-                <a href="./WebHTML-ru/index-ru.html" class="language"><img src="./Images/russian.svg">ru</a>
+                <a class="language" id="currentLang">ro</a>
+                <a href="./WebHTML-en/index-en.html" class="language">en</a>
+                <a href="./WebHTML-ru/index-ru.html" class="language">ru</a>
             </div>
             <a href="#" class="hamburger">
                 <span class="bar"></span>
@@ -46,24 +48,24 @@
 
     <div class="Collumns center">
         <div class="collumn">
-            <div class="iconImg"><img src="./Images/excell.svg" class="icon"></div>
+            <img src="./Images/excell.svg" class="icon">
             <h3 class="blockHeader">Calitate Buna</h3>
             <p class="blockText">calitatea este buna foarte buna foarte buna foarte foarte buna foarte buna foarte buna foarte foarte buna</p>
         </div>
         <div class="collumn">
-            <div class="iconImg"><img src="./Images/excell.svg" class="icon"></div>
+            <img src="./Images/excell.svg" class="icon">
             <h3 class="blockHeader">Stoc International</h3>
             <p class="blockText">calitatea este buna foarte buna foarte buna foarte foarte buna foarte buna foarte buna foarte foarte buna</p>
         </div>
         <div class="collumn">
-            <div class="iconImg"><img src="./Images/excell.svg" class="icon"></div>
+            <img src="./Images/excell.svg" class="icon">
             <h3 class="blockHeader">Optiuni Custom</h3>
             <p class="blockText">calitatea este buna foarte buna foarte buna foarte foarte buna foarte buna foarte buna foarte foarte buna</p>
         </div>
     </div>
 
     <div class="newProducts center">
-        <h1 class="productsHeader">Produse featured</h1>
+        <h1 class="productsHeader title">Produse featured</h1>
         <p class="productsText">Obsreva cele mai recente produse</p>
         <div class="productImages center">
             <div class="product">
@@ -82,35 +84,56 @@
     </div>
 
     <div class="center">
-        <h1>Recenzii</h1>
-        <div class="reviews flex-row">
-        <div class="reviewBlock">
-            <div class="reviewStar flex-row">
-                <h2>4,8</h2>
-                <img src="./Images/4_8.jpg" class="stars">
+        <h1 class="reviewsHead title">Recenzii</h1>
+        <div class="reviews flex center">
+            <div class="reviewBlock">
+                <div class="reviewStar flex">
+                    <h2>5</h2>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h1 class="name">Adieu Vior</h1>
+                <p class="reviewText">Am comandat cel mai frumos cadou de la Soul Market, iubitului meu i-a plăcut acest cadou foarte frumos Am comandat cel mai frumos cadou de la Soul Market, iubitului meu i-a plăcut acest cadou foarte frumos Am comandat cel mai frumos cadou de la Soul Market, iubitului meu i-a plăcut acest cadou foarte frumos </p>
             </div>
-            <h2 class="name">Aideu Vior</h2>
-            <p class="reviewText">Am comandat cel mai frumos cadou de la Soul Market, iubitului meu i-a plăcut acest cadou foarte frumos</p>
-            <img src="./Images/person1_pfp.jpg" class="reviewPfp">
-        </div>
-        <div class="reviewBlock">
-            <div class="reviewStar flex-row">
-                <h2>4,8</h2>
-                <img src="./Images/4_8.jpg" class="stars">
+            <div class="reviewBlock">
+                <div class="reviewStar flex">
+                    <h2>5</h2>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h1 class="name">Adieu Vior</h1>
+                <p class="reviewText">Am comandat cel mai frumos cadou de la Soul Market, iubitului meu i-a plăcut acest cadou foarte frumos Am comandat cel mai frumos cadou de la Soul Market, iubitului meu i-a plăcut acest cadou foarte frumos Am comandat cel mai frumos cadou de la Soul Market, iubitului meu i-a plăcut acest cadou foarte frumos </p>
             </div>
-            <h2 class="name">Aideu Vior</h2>
-            <p class="reviewText">Am comandat cel mai frumos cadou de la Soul Market, iubitului meu i-a plăcut acest cadou foarte frumos</p>
-            <img src="./Images/person1_pfp.jpg" class="reviewPfp">
-        </div>
-        <div class="reviewBlock">
-            <div class="reviewStar flex-row">
-                <h2>4,8</h2>
-                <img src="./Images/4_8.jpg" class="stars">
+            <div class="reviewBlock">
+                <div class="reviewStar flex">
+                    <h2>5</h2>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h1 class="name">Adieu Vior</h1>
+                <p class="reviewText">Am comandat cel mai frumos cadou de la Soul Market, iubitului meu i-a plăcut acest cadou foarte frumos Am comandat cel mai frumos cadou de la Soul Market, iubitului meu i-a plăcut acest cadou foarte frumos Am comandat cel mai frumos cadou de la Soul Market, iubitului meu i-a plăcut acest cadou foarte frumos </p>
             </div>
-            <h2 class="name">Aideu Vior</h2>
-            <p class="reviewText">Am comandat cel mai frumos cadou de la Soul Market, iubitului meu i-a plăcut acest cadou foarte frumos</p>
-            <img src="./Images/person1_pfp.jpg" class="reviewPfp">
         </div>
+    </div>
+
+    <div class="yourReview center">
+        <h1 class="title">Scrie recenzia ta</h1>
+        <div class="starContainer">
+            <form>
+            <div class="rating">
+                <input type="radio" name="rating" id="star-1" class="starRating" value="1" required>
+                <label for="star-1"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" name="rating" id="star-2" class="starRating" value="2">
+                <label for="star-2"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" name="rating" id="star-3" class="starRating" value="3">
+                <label for="star-3"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" name="rating" id="star-4" class="starRating" value="4">
+                <label for="star-4"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" name="rating" id="star-5" class="starRating" value="5">
+                <label for="star-5"><i class="fa-solid fa-star"></i></label>
+            </div>
+                <div class="sendMessage center">
+                    <textarea name="message" placeholder="Mesajul Dvs." required></textarea>
+                </div>
+                <button type="submit">Trimite mesajul</button>
+            </form>
         </div>
     </div>
 
