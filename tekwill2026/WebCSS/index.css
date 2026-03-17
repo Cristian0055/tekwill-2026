@@ -54,7 +54,7 @@ header {
 
 .language {
     display: flex;
-    margin-left: 10px;
+    margin-right: auto;
 }
 
 .language img {
