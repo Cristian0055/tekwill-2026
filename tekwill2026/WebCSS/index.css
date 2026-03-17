@@ -47,6 +47,23 @@ header {
     user-select: none;
 }
 
+.languageBox {
+    display: flex;
+    margin-left: 20px;
+}
+
+.language {
+    display: flex;
+    margin-left: 10px;
+}
+
+.language img {
+    width: 20px;
+    height: 10px;
+    margin-right: 5px;
+    user-select: none;
+}
+
 .navList ul {
     margin: 0;
     padding: 0;
@@ -354,6 +371,16 @@ header {
         font-weight: bold;
         max-width: 1000px;
         line-height: 30px;
+    }
+
+    .Collumns {
+    flex-direction: collumn;
+    }
+
+.productImages {
+    margin: 60px auto 0;
+    display: flex;
+    flex-direction: collumn;
 }
 
     /* body end */
