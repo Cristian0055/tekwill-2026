@@ -49,18 +49,17 @@ header {
 
 .languageBox {
     display: flex;
-    margin-left: 20px;
 }
 
 .language {
     display: flex;
-    margin-right: auto;
+    margin-right: 5rem;
 }
 
 .language img {
     width: 20px;
     height: 10px;
-    margin-right: 5px;
+    margin-right: 2.5px;
     user-select: none;
 }
 
