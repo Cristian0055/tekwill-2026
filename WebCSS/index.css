@@ -59,13 +59,15 @@ header {
     display: flex;
     margin-right: 10px;
     cursor: pointer;
-    color: #fff;
+    background-color: #b3b3b3;
+    padding: 10px;
+    border-radius: 0.5rem;
 }
 
 #currentLang {
     user-select: none;
     text-decoration: solid;
-    color: #000;
+    background-color: #3b3b3b;
 }
 
 .navList ul {
@@ -101,7 +103,6 @@ header {
     position: absolute;
     top: 1.5rem;
     right: 1rem;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .bar {
