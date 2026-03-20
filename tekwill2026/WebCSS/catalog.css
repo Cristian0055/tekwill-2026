@@ -377,6 +377,7 @@ header {
     scroll-snap-align: center;
     scroll-snap-stop: always;
     position: relative;
+    cursor: pointer;
 }
 
 .itemImage {
