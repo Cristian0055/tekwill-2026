@@ -1,14 +1,13 @@
-
-
 * {
     font-family: 'Comfortaa';
     list-style: none;
     text-decoration: none;
     color: #000;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
-    background-color: rgba(198, 233, 111, 0.714);
+    background-color: #c6e96fb6;
     padding: 0;
     margin: 0;
 }
@@ -18,15 +17,15 @@ p, h1, h2 {
     padding: 0;
 }
 
-    /* Navigation start*/
+/* Navigation start*/
 
 header {
     background-color: #17942c;
+    box-shadow: 0px 10px 10px #0000004f;
 }
 
 .nav {
     padding: 0.5rem 0;
-    margin: auto 5rem 3rem;
     height: 3.5rem;
     display: flex;
     justify-content: space-between;
@@ -37,6 +36,7 @@ header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-left: 3rem;
 }
 
 .logoBox p {
@@ -49,8 +49,39 @@ header {
     user-select: none;
 }
 
-.navList ul {
+.languages {
+    display: flex;
+    align-items: center;
+    margin-right: 100px;
+    background-color: #729167;
+    border-radius: 0.5rem;
+    padding: 2px;
+    gap: 2px;
+    box-shadow: 0px 10px 10px #0000004f;
+}
+
+.languageBox {
+    display: flex;
+    gap: 2px;
+}
+
+.language {
+    font-size: 0.875rem;
+    padding: 2px 5px;
     margin: 0;
+    background-color: #729167;
+    border-radius: 0.5rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+.language.active {
+    background-color: #316630;
+}
+
+.navList ul {
+    margin-right: 3rem;
     padding: 0;
     display: flex;
 }
@@ -64,12 +95,13 @@ header {
     color: #000;
     padding: 1rem;
     display: block;
-     font-family: 'open sans', sans-serif;
+    font-family: 'open sans', sans-serif;
     cursor: pointer;
     user-select: none;
+    font-weight: bold;
 }
 
-.navList li:hover {
+.navList li:not(.language, ):hover {
     background-color: #34bd228a;
 }
 
@@ -82,7 +114,6 @@ header {
     position: absolute;
     top: 1.5rem;
     right: 1rem;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .bar {
@@ -93,31 +124,68 @@ header {
     border-radius: 0.625rem;
     transition: all ease-in-out 100ms;
 }
-    /* Navigation end*/
 
-    /* body start*/
+@layer demo {
+    .language.active {
+        view-transition-name: active-nav-elem;
+    }
 
-.soulShop {
-    display: flex;
+    .language.active::before {
+        view-transition-name: active-nav-elem;
+    }
+
+    ::view-transition-old(active-nav-elem), ::view-transition-new(active-nav-elem) {
+        animation: fade 300ms ease-in-out;
+        height: 100%;
+    }
+
+    ::view-transition-group(nav-1) {
+        z-index: 1;
+    }
+    ::view-transition-group(nav-2) {
+        z-index: 1;
+    }
+    ::view-transition-group(nav-3) {
+        z-index: 1;
+    }
+
+}
+
+/* Navigation end*/
+
+/* body start*/
+
+.everything {
+    padding-bottom: 5rem;
+    box-shadow: 0px 20px 10px #000000b6;
 }
 
 .soulMarket {
+    margin-top: 5rem;
     font-size: 3.5rem;
-    margin: 1.5rem 0 0 1rem;
+}
+
+.soulShop {
+    max-width: 80%;
+    margin: 1.5rem auto 0;
 }
 
 .content {
     margin: 1rem;
     padding: 1rem;
-    background-color: #ffffffd2;
     border-radius: 0.5rem;
     display: flex;
 }
 
 .paragraph {
+    padding: 20px;
     display: flex;
     font-size: 1.875rem;
     margin-left: 1rem;
+    margin-bottom: 3rem;
+    border-radius: 0.5rem;
+    background-color: #ffffffd2;
+    box-shadow: 0px 10px 10px #0000004f;
 }
 
 .images {
@@ -128,19 +196,38 @@ header {
     user-select: none;
 }
 
+.images img {
+    border-radius: 0.5rem;
+    box-shadow: 0px 10px 10px #0000004f;
+}
+
+.center {
+    justify-content: center;
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 50px;
+}
+
     /* body end*/
 
     /* footer start*/
 
 .footer {
     background-color: #33a82fce;
-    margin-top: 5rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     padding: 1rem;
     box-sizing: border-box;
     gap: 1rem;
+    box-shadow: 0px 10px 10px #0000004f;
 }
 
 .footer * {
@@ -200,7 +287,7 @@ header {
 
     /* footer end*/
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 830px) {
 
     body {
         margin: 0;
@@ -208,13 +295,17 @@ header {
     }
 
     /* Navigation start*/
-    .logo {
+
+    .navlist .logo {
         height: 3.5rem;
         margin-top: 0;
+        z-index: -1;
     }
 
     .hamburger {
         display: flex;
+        z-index: 3;
+        margin-right: 3rem;
     }
 
     .navList {
@@ -228,9 +319,9 @@ header {
         transition: ease-in-out 200ms;
     }
 
-    .nav {
-        flex-direction: column;
-        align-items: flex-start;
+    .navList.active {
+        top:0;
+        z-index: 2;
     }
 
     .navList ul {
@@ -243,21 +334,8 @@ header {
         text-align: center;
     }
 
-    .navList .logo{
-        z-index: -1;
-    }
-
-    .hamburger {
-        z-index: 3;
-    }
-
-    .nav {
-        margin: 0 auto 3rem;
-    }
-
-    .navList.active {
-        top:0;
-        z-index: 2;
+    .languages {
+        margin: 1rem auto;
     }
 
     .hamburger.active :nth-child(1) {
@@ -271,6 +349,7 @@ header {
     .hamburger.active :nth-child(3) {
         transform: rotate(-45deg) translate(0.45rem, -0.1875rem);
     }
+
     /* Navigation end*/
 
     /* body start*/
@@ -283,7 +362,6 @@ header {
 
     .soulShop {
         font-size: 1rem;
-        margin: 0.875rem 0 0 0.25rem;
     }
 
     .paragraph {
@@ -300,6 +378,10 @@ header {
     .images img {
         width: 90%;
         height: auto;
+    }
+
+    .title {
+        font-size: 40px;
     }
 
         /* body end*/
@@ -322,5 +404,5 @@ header {
 
 @font-face {
     font-family: 'Comfortaa';
-    src: url('../../fonts/Comfortaa.ttf');
+    src: url('../fonts/Comfortaa.ttf');
 }

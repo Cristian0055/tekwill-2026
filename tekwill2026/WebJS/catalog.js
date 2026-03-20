@@ -1,4 +1,4 @@
-// checks to see if hamburger menu is shown
+// The nav part
 const hamburger = document.querySelector(".hamburger");
 const linksContainer = document.querySelector(".navList");
 const links = document.querySelectorAll(".link");
@@ -26,6 +26,57 @@ function closeMenu() {
         });
     });
 }
+
+
+const language = document.querySelectorAll(".language")
+
+language.forEach((lang) => {
+    lang.addEventListener("click", (event) => {
+        if (event.target.href) {
+            event.preventDefault();
+        }
+        
+        if (!document.startViewTransition) {
+            setActiveItem(event.target);
+            if (event.target.href) {
+                    window.location.href = event.target.href;
+            }
+            return;
+        };
+
+        const transition = document.startViewTransition(() => 
+            setActiveItem(event.target));
+        
+        if (event.target.href) {
+            transition.finished.then(() => {
+                window.location.href = event.target.href;
+            });
+        }
+    });
+});
+
+function setActiveItem(element) {
+    language.forEach((lang) => lang.classList.remove("active"));
+    element.classList.add("active");
+}
+
+function setInitialActive() {
+    const path = window.location.pathname;
+    let activeId;
+    if (path.includes('-en')) {
+        activeId = 'english';
+    } else if (path.includes('-ru')) {
+        activeId = 'russian';
+    } else {
+        activeId = 'romanian';
+    }
+    const langElement = document.getElementById(activeId);
+    if (langElement) {
+        setActiveItem(langElement);
+    }
+}
+
+setInitialActive();
 
 // The left right button things for the catalog section
 for (let i = 1; i <= 3; i++) {
@@ -160,18 +211,106 @@ cart.addEventListener("click", () => {
     cart.classList.toggle("closed");
 });
 
+const CART_STORAGE_KEY = "soulMarketCart";
+
+const saveCartToStorage = () => {
+    const cartItems = [];
+    cartContent.querySelectorAll('.cartItem').forEach(item => {
+        const name = item.querySelector('.cartItemName').textContent;
+        const price = item.querySelector('.cartItemPrice').textContent;
+        const quantity = item.querySelector('.amount').textContent;
+        const image = item.querySelector('.cartItemImage').src;
+        cartItems.push({ name, price, quantity, image });
+    });
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+};
+
+const loadCartFromStorage = () => {
+    const stored = localStorage.getItem(CART_STORAGE_KEY);
+    if (!stored) return;
+
+    const items = JSON.parse(stored);
+    items.forEach(item => {
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cartItem");
+        cartItem.innerHTML = `
+            <img src="${item.image}" class="cartItemImage">
+            <div class="cartDetails">
+                <p class="cartItemName">${item.name}</p>
+                <p class="cartItemPrice">${item.price}</p>
+                <div class="cartQuantity">
+                    <button class="decrement">-</button>
+                    <span class="amount">${item.quantity}</span>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+            <button class="removeButton"><img src="../Images/delete.svg" alt="Remove"></button>
+        `;
+
+        cartContent.appendChild(cartItem);
+        attachCartItemListeners(cartItem);
+    });
+
+    updateTotalPrice();
+};
+
+const attachCartItemListeners = (cartItem) => {
+    const removeButton = cartItem.querySelector(".removeButton");
+    const decrementButton = cartItem.querySelector(".decrement");
+    const incrementButton = cartItem.querySelector(".increment");
+    const amountElement = cartItem.querySelector(".amount");
+
+    removeButton.addEventListener("click", () => {
+        cartItem.remove();
+        updateTotalPrice();
+        saveCartToStorage();
+    });
+
+    decrementButton.addEventListener("click", () => {
+        let quantity = parseInt(amountElement.textContent);
+        if (quantity > 1) {
+            quantity--;
+            amountElement.textContent = quantity;
+            if (quantity === 1) decrementButton.style.color = "#999";
+            updateTotalPrice();
+            saveCartToStorage();
+        }
+    });
+
+    incrementButton.addEventListener("click", () => {
+        let quantity = parseInt(amountElement.textContent);
+        quantity++;
+        amountElement.textContent = quantity;
+        decrementButton.style.color = "#333";
+        updateTotalPrice();
+        saveCartToStorage();
+    });
+
+    if (parseInt(amountElement.textContent) === 1) {
+        decrementButton.style.color = "#999";
+    }
+};
+
 const addToCart = (itemContainer) => {
     const itemImage = itemContainer.querySelector(".itemImage").src;
     const itemName = itemContainer.querySelector(".name").textContent;
     const itemPrice = itemContainer.querySelector(".price").textContent;
 
-    const cartItems = cartContent.querySelectorAll(".cartItemName");
-    for (let cartItemName of cartItems) {
-        if (cartItemName.textContent === itemName) {
-            alert("Acest produs este deja în coș.");
-            return;
-        };
+    const existingItem = Array.from(cartContent.querySelectorAll('.cartItem')).find(cartItem => {
+        const name = cartItem.querySelector('.cartItemName').textContent;
+        return name === itemName;
+    });
+
+    if (existingItem) {
+        const amountElement = existingItem.querySelector('.amount');
+        let quantity = parseInt(amountElement.textContent);
+        quantity++;
+        amountElement.textContent = quantity;
+        updateTotalPrice();
+        saveCartToStorage();
+        return;
     }
+
     const cartItem = document.createElement("div");
     cartItem.classList.add("cartItem");
     cartItem.innerHTML = `
@@ -185,46 +324,14 @@ const addToCart = (itemContainer) => {
                 <button class="increment">+</button>
             </div>
         </div>
-        <button class="removeButton"><img src="../../Images/delete.svg" alt="Remove"></button>
-        `;
+        <button class="removeButton"><img src="../Images/delete.svg" alt="Remove"></button>
+    `;
 
     cartContent.appendChild(cartItem);
+    attachCartItemListeners(cartItem);
     updateTotalPrice();
-
-    cartItem.querySelector(".removeButton").addEventListener("click", () => {
-        cartItem.remove();
-        updateTotalPrice();
-    });
-
-    const decrementButton = cartItem.querySelector(".decrement");
-    const incrementButton = cartItem.querySelector(".increment");
-    const amountElement = cartItem.querySelector(".amount");
-
-    decrementButton.addEventListener("click", () => {
-        let quantity = amountElement.textContent;
-        if (quantity > 1) {
-            quantity--;
-            amountElement.textContent = quantity;
-            if (quantity === 1) {
-                decrementButton.style.color = "#999";
-            }
-
-            updateTotalPrice();
-        }
-
-        updateTotalPrice();
-    });
-
-    incrementButton.addEventListener("click", () => {
-        let quantity = amountElement.textContent;
-        quantity++;
-        amountElement.textContent = quantity;
-        decrementButton.style.color = "#333";
-        updateTotalPrice();
-    });
-
-    decrementButton.style.color = "#999";
-}
+    saveCartToStorage();
+};
 
 const addCartButtons = document.querySelectorAll(".add-cart");
 addCartButtons.forEach(button => {
@@ -241,12 +348,14 @@ const updateTotalPrice = () => {
     cartItems.forEach(cartItem => {
         const priceElement = cartItem.querySelector(".cartItemPrice");
         const quantityElement = cartItem.querySelector(".amount");
-        const price = priceElement.textContent.replace("MDL", "");
-        const quantity = quantityElement.textContent;
+        const price = parseFloat(priceElement.textContent.replace("MDL", "")) || 0;
+        const quantity = parseInt(quantityElement.textContent) || 0;
         total += price * quantity;
     });
     totalPriceElement.textContent = `${total} MDL`;
-}
+};
+
+loadCartFromStorage();
 
 let cartItemCount = 0;
 const updateCartCount = change => {
@@ -268,6 +377,7 @@ cartBuyButton.addEventListener("click", () => {
     updateCartCount(0);
     
     updateTotalPrice();
+    saveCartToStorage();
     
     alert("Mulțumim pentru cumpărături!");
 });

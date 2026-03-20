@@ -3,10 +3,11 @@
     list-style: none;
     text-decoration: none;
     color: #000;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
-    background-color: rgba(198, 233, 111, 0.714);
+    background-color: #c6e96fb6;
     padding: 0;
     margin: 0;
 }
@@ -16,7 +17,7 @@ p, h1, h2 {
     padding: 0;
 }
 
-    /* Navigation start*/
+/* Navigation start*/
 
 header {
     background-color: #17942c;
@@ -24,7 +25,6 @@ header {
 
 .nav {
     padding: 0.5rem 0;
-    margin: auto 5rem 3rem;
     height: 3.5rem;
     display: flex;
     justify-content: space-between;
@@ -35,6 +35,7 @@ header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-left: 3rem;
 }
 
 .logoBox p {
@@ -47,8 +48,39 @@ header {
     user-select: none;
 }
 
-.navList ul {
+.languages {
+    display: flex;
+    align-items: center;
+    margin-right: 100px;
+    background-color: #729167;
+    border-radius: 0.5rem;
+    padding: 2px;
+    gap: 2px;
+    box-shadow: 0px 10px 10px #0000004f;
+}
+
+.languageBox {
+    display: flex;
+    gap: 2px;
+}
+
+.language {
+    font-size: 0.875rem;
+    padding: 2px 5px;
     margin: 0;
+    background-color: #729167;
+    border-radius: 0.5rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+.language.active {
+    background-color: #316630;
+}
+
+.navList ul {
+    margin-right: 3rem;
     padding: 0;
     display: flex;
 }
@@ -65,9 +97,10 @@ header {
     font-family: 'open sans', sans-serif;
     cursor: pointer;
     user-select: none;
+    font-weight: bold;
 }
 
-.navList li:hover {
+.navList li:not(.language, ):hover {
     background-color: #34bd228a;
 }
 
@@ -80,7 +113,6 @@ header {
     position: absolute;
     top: 1.5rem;
     right: 1rem;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .bar {
@@ -91,9 +123,36 @@ header {
     border-radius: 0.625rem;
     transition: all ease-in-out 100ms;
 }
-    /* Navigation end*/
 
-    /* body start*/
+@layer demo {
+    .language.active {
+        view-transition-name: active-nav-elem;
+    }
+
+    .language.active::before {
+        view-transition-name: active-nav-elem;
+    }
+
+    ::view-transition-old(active-nav-elem), ::view-transition-new(active-nav-elem) {
+        animation: fade 300ms ease-in-out;
+        height: 100%;
+    }
+
+    ::view-transition-group(nav-1) {
+        z-index: 1;
+    }
+    ::view-transition-group(nav-2) {
+        z-index: 1;
+    }
+    ::view-transition-group(nav-3) {
+        z-index: 1;
+    }
+
+}
+
+/* Navigation end*/
+
+/* body start*/
 
 .content {
     display: flex;
@@ -253,6 +312,20 @@ ul {
 }
 
 
+.center {
+    justify-content: center;
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 50px;
+}
+
     /* body end*/
 
     /* footer start*/
@@ -320,7 +393,7 @@ ul {
 
     /* footer end*/
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 830px) {
 
     body {
         margin: 0;
@@ -328,13 +401,17 @@ ul {
     }
 
     /* Navigation start*/
-    .logo {
+
+    .navlist .logo {
         height: 3.5rem;
         margin-top: 0;
+        z-index: -1;
     }
 
     .hamburger {
         display: flex;
+        z-index: 3;
+        margin-right: 3rem;
     }
 
     .navList {
@@ -348,9 +425,9 @@ ul {
         transition: ease-in-out 200ms;
     }
 
-    .nav {
-        flex-direction: column;
-        align-items: flex-start;
+    .navList.active {
+        top:0;
+        z-index: 2;
     }
 
     .navList ul {
@@ -363,21 +440,8 @@ ul {
         text-align: center;
     }
 
-    .navList .logo{
-        z-index: -1;
-    }
-
-    .hamburger {
-        z-index: 3;
-    }
-
-    .nav {
-        margin: 0 auto 3rem;
-    }
-
-    .navList.active {
-        top:0;
-        z-index: 2;
+    .languages {
+        margin: 1rem auto;
     }
 
     .hamburger.active :nth-child(1) {
@@ -391,6 +455,7 @@ ul {
     .hamburger.active :nth-child(3) {
         transform: rotate(-45deg) translate(0.45rem, -0.1875rem);
     }
+
     /* Navigation end*/
 
     /* body start*/
@@ -408,6 +473,10 @@ ul {
 
     .map {
         font-size: 0.5  rem;
+    }
+
+    .title {
+        font-size: 40px;
     }
 
     /* body end*/
@@ -437,5 +506,5 @@ ul {
 
 @font-face {
     font-family: 'Comfortaa';
-    src: url('../../fonts/Comfortaa.ttf');
+    src: url('../fonts/Comfortaa.ttf');
 }
